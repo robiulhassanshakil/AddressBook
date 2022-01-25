@@ -46,13 +46,13 @@ namespace AddressBookAPI.Controllers
         }
 
         [HttpGet]
-        [Route("{Id}")]
+        [Route("{contactGetById}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Person))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetById(Guid id)
+        public async Task<IActionResult> GetById(Guid contactGetById)
         {
             var model = _scope.Resolve<ContactListModel>();
-            var entity = await model.GetById(id);
+            var entity = await model.GetById(contactGetById);
             if (entity is null) return NotFound();
 
             return Ok(entity);
