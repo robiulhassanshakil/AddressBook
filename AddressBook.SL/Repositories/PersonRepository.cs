@@ -9,7 +9,7 @@ using AddressBook.SL.Entities;
 
 namespace AddressBook.SL.Repositories
 {
-    public class PersonRepository : Repository<Person, int, AddressBookDbContext>, IPersonRepository
+    public class PersonRepository : Repository<Person, Guid, AddressBookDbContext>, IPersonRepository
     {
         public PersonRepository(AddressBookDbContext context) 
             : base(context)

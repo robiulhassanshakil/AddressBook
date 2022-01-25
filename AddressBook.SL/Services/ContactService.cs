@@ -41,7 +41,9 @@ namespace AddressBook.SL.Services
             await _addressBookUnitOfWork.Persons.AddAsync(entity);
             await _addressBookUnitOfWork.SaveAsync();
 
-            
+            var ReadAgain = entity.Id;
+
+
         }
     }
 }
