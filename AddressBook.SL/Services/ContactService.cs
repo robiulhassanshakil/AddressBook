@@ -36,14 +36,10 @@ namespace AddressBook.SL.Services
         }
 
         public async Task CreateCourseAsync(Person person)
-        {
+         {
             var entity = _mapper.Map<Entities.Person>(person);
             await _addressBookUnitOfWork.Persons.AddAsync(entity);
             await _addressBookUnitOfWork.SaveAsync();
-
-            var ReadAgain = entity.Id;
-
-
-        }
+         }
     }
 }
