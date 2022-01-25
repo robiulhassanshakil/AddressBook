@@ -5,15 +5,15 @@ namespace AddressBook.DL
 {
     public class UnitOfWork : IUnitOfWork
     {
-        protected readonly DbContext DbContext;
+        protected readonly DbContext _dbContext;
 
-        public UnitOfWork(DbContext dbContext) => DbContext = dbContext;
+        public UnitOfWork(DbContext dbContext) => _dbContext = dbContext;
 
-        public void Dispose() => DbContext?.Dispose();
+        public void Dispose() => _dbContext?.Dispose();
 
-        public void Save() => DbContext?.SaveChanges();
+        public void Save() => _dbContext?.SaveChanges();
 
-        public async Task SaveAsync() => await DbContext.SaveChangesAsync();
+        public async Task SaveAsync() => await _dbContext.SaveChangesAsync();
         
     }
 }

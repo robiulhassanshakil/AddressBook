@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using AddressBook.SL.Entities;
+using AddressBook.SL.BusinessObjects;
 using AddressBookAPI.Models;
 using Autofac;
 using Microsoft.AspNetCore.Http;
@@ -29,5 +29,21 @@ namespace AddressBookAPI.Controllers
             var model = _scope.Resolve<ContactListModel>();
             return Ok(await model.GetContactsAsync());
         }
+
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(Person))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Add([FromBody] Person person)
+        {
+            if (person is null)
+                BadRequest("Invalid person");
+
+            var model = _scope.Resolve<CreateCourseModel>();
+            await model.CreateCourseAsync(person);
+
+            return Created("TODO", person);
+        }
+
+
     }
 }

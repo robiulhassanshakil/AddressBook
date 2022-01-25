@@ -21,24 +21,20 @@ namespace AddressBook.SL
             _connectionString = connectionString;
             _migrationAssemblyName = migrationAssemblyName;
         }
+
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<AddressBookDbContext>().AsSelf()
                 .WithParameter("connectionString", _connectionString)
-                .WithParameter("migrationAssemblyName", _migrationAssemblyName)
-                .InstancePerLifetimeScope();
+                .WithParameter("migrationAssemblyName", _migrationAssemblyName).InstancePerLifetimeScope();
 
             builder.RegisterType<AddressBookDbContext>().As<IAddressBookDbContext>()
                 .WithParameter("connectionString", _connectionString)
-                .WithParameter("migrationAssemblyName", _migrationAssemblyName)
-                .InstancePerLifetimeScope();
+                .WithParameter("migrationAssemblyName", _migrationAssemblyName).InstancePerLifetimeScope();
             
-            builder.RegisterType<PersonRepository>().As<IPersonRepository>()
-                .InstancePerLifetimeScope();
-            builder.RegisterType<AddressBookUnitOfWork>().As<IAddressBookUnitOfWork>()
-                .InstancePerLifetimeScope();
-            builder.RegisterType<ContactService>().As<IContactService>()
-                .InstancePerLifetimeScope();
+            builder.RegisterType<PersonRepository>().As<IPersonRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<AddressBookUnitOfWork>().As<IAddressBookUnitOfWork>().InstancePerLifetimeScope();
+            builder.RegisterType<ContactService>().As<IContactService>().InstancePerLifetimeScope();
 
             base.Load(builder);
         }

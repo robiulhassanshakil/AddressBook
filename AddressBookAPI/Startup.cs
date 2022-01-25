@@ -49,6 +49,7 @@ namespace AddressBookAPI
                 options.UseSqlServer(connectionInfo.connectionString, b =>
                     b.MigrationsAssembly(connectionInfo.migrationAssemblyName)));
 
+
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddControllers();
             services.AddSwaggerGen(c =>

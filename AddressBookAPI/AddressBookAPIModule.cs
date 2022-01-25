@@ -8,6 +8,7 @@ namespace AddressBookAPI
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<ContactListModel>().AsSelf();
+            builder.RegisterType<CreateCourseModel>().AsSelf();
 
             base.Load(builder);
         }
