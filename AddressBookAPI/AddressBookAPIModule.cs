@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using AddressBookAPI.Models;
+using Autofac;
 
 namespace AddressBookAPI
 {
@@ -6,6 +7,8 @@ namespace AddressBookAPI
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<ContactListModel>().AsSelf();
+
             base.Load(builder);
         }
     }

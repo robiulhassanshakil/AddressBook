@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AddressBook.SL.BusinessObjects;
 using AutoMapper;
 
 namespace AddressBook.SL.Profiles
@@ -11,6 +12,7 @@ namespace AddressBook.SL.Profiles
     {
         public AddressBookSlProfile()
         {
+            CreateMap<Person, Entities.Person>().ReverseMap();
         }
     }
 }

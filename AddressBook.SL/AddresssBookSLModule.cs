@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AddressBook.SL.Contexts;
 using AddressBook.SL.Repositories;
+using AddressBook.SL.Services;
 using AddressBook.SL.UnitOfWorks;
 using Autofac;
 
@@ -35,6 +36,8 @@ namespace AddressBook.SL
             builder.RegisterType<PersonRepository>().As<IPersonRepository>()
                 .InstancePerLifetimeScope();
             builder.RegisterType<AddressBookUnitOfWork>().As<IAddressBookUnitOfWork>()
+                .InstancePerLifetimeScope();
+            builder.RegisterType<ContactService>().As<IContactService>()
                 .InstancePerLifetimeScope();
 
             base.Load(builder);
