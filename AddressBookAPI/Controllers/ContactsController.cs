@@ -61,8 +61,8 @@ namespace AddressBookAPI.Controllers
         [HttpDelete]
         [Route("{contactToDeleteId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Delete(Guid contactToDeleteId)
         {
             try
@@ -71,7 +71,7 @@ namespace AddressBookAPI.Controllers
                 await model.DeleteContactAsync(contactToDeleteId);
                 return Ok();
             }
-            catch (ArgumentException e)
+            catch (ArgumentException)
             {
                 return NotFound();
             }
