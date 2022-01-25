@@ -35,11 +35,23 @@ namespace AddressBook.SL.Services
             return (_mapper.Map(entityList, person));
         }
 
-        public async Task CreateCourseAsync(Person person)
+        public async Task CreateContactAsync(Person person)
          {
             var entity = _mapper.Map<Entities.Person>(person);
             await _addressBookUnitOfWork.Persons.AddAsync(entity);
             await _addressBookUnitOfWork.SaveAsync();
          }
+
+        public async Task DeleteContactAsync(Guid contactToDeleteId)
+        {
+           await _addressBookUnitOfWork.Persons.RemoveAsync(contactToDeleteId);
+           await _addressBookUnitOfWork.SaveAsync();
+        }
+
+        public async Task<Person> GetById(Guid id)
+        {
+            Person person = new();
+           return _mapper.Map(await _addressBookUnitOfWork.Persons.GetByIdAsync(id), person) ;
+        }
     }
 }

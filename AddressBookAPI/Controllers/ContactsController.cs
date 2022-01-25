@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AddressBook.SL.BusinessObjects;
 using AddressBookAPI.Models;
@@ -38,16 +39,44 @@ namespace AddressBookAPI.Controllers
             if (person is null)
                 BadRequest("Invalid person");
 
-            var model = _scope.Resolve<CreateCourseModel>();
-            await model.CreateCourseAsync(person);
+            var model = _scope.Resolve<CreateContactModel>();
+            await model.CreateContactAsync(person);
 
             return Created("TODO", person);
         }
 
+        [HttpGet]
+        [Route("{Id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Person))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetById(Guid id)
+        {
+            var model = _scope.Resolve<ContactListModel>();
+            var entity = await model.GetById(id);
+            if (entity is null) return NotFound();
 
+            return Ok(entity);
+        }
 
+        [HttpDelete]
+        [Route("{contactToDeleteId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> Delete(Guid contactToDeleteId)
+        {
+            try
+            {
+                var model = _scope.Resolve<DeleteContactModel>();
+                await model.DeleteContactAsync(contactToDeleteId);
+                return Ok();
+            }
+            catch (ArgumentException e)
+            {
+                return NotFound();
+            }
 
-
-
+            return NoContent();
+        }
     }
 }

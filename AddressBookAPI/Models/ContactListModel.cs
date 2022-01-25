@@ -1,5 +1,6 @@
 ﻿
 
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AddressBook.SL.BusinessObjects;
@@ -21,5 +22,10 @@ namespace AddressBookAPI.Models
         }
 
         public async Task<List<Person>> GetContactsAsync() => await _contactService.GetContactsAsync();
+
+        public async Task<Person> GetById(Guid id)
+        {
+           return (await _contactService.GetById(id));
+        }
     }
 }

@@ -5,22 +5,22 @@ using System.Threading.Tasks;
 
 namespace AddressBookAPI.Models
 {
-    public class CreateCourseModel
+    public class CreateContactModel
     {
         private readonly IContactService _contactService;
 
-        public CreateCourseModel()
+        public CreateContactModel()
         {
         }
 
-        public CreateCourseModel(IContactService contactService)
+        public CreateContactModel(IContactService contactService)
         {
             _contactService = contactService;
         }
 
-        public async Task CreateCourseAsync(Person person)
+        public async Task CreateContactAsync(Person person)
         {
-            await _contactService.CreateCourseAsync(person);
+            await _contactService.CreateContactAsync(person);
         }
     }
 }
